@@ -1,0 +1,16 @@
+.domain-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.domain-pixel {
+    border: 0.1px solid #000000;
+}
+
+#grid {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+}
