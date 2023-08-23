@@ -80,21 +80,13 @@
                 <div class="grow">
                     <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Pixels in x direction</label>
                     <div class="relative w-full">
-                        <input type="range" name="points_x" id="points_x" value="30" min="0" max="150" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
-                        <div class="-mt-2 flex w-full justify-between">
-                            <span class="text-sm text-gray-600">0</span>
-                            <span class="text-sm text-gray-600">150</span>
-                        </div>
+                        <input type="number" name="points_x" id="points_x" value="30" min="0" max="150" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                     </div>
                 </div>
                 <div class="grow">
                     <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Pixels in y direction</label>
                     <div class="relative w-full">
-                        <input type="range" name="points_y" id="points_y" value="30" min="0" max="150" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
-                        <div class="-mt-2 flex w-full justify-between">
-                            <span class="text-sm text-gray-600">0</span>
-                            <span class="text-sm text-gray-600">150</span>
-                        </div>
+                        <input type="number" name="points_y" id="points_y" value="30" min="0" max="150" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                     </div>
                 </div>
             </div>
@@ -102,11 +94,7 @@
                 <div class="grow">
                     <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Meters per Unit</label>
                     <div class="relative w-full">
-                        <input type="range" name="delta_x" id="delta_x" value="1" min="0" step="0.1" max="10" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
-                        <div class="-mt-2 flex w-full justify-between">
-                            <span class="text-sm text-gray-600">0</span>
-                            <span class="text-sm text-gray-600">10</span>
-                        </div>
+                        <input type="number" name="delta_x" id="delta_x" value="1" min="0" step="0.1" max="10" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                     </div>
                 </div>
             </div>  
@@ -114,11 +102,7 @@
                 <div class="grow">
                     <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Timestep per Iteration (s)</label>
                     <div class="relative w-full">
-                        <input type="range" name="delta_t" id="delta_t" value="120" min="0" max="1000" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
-                        <div class="-mt-2 flex w-full justify-between">
-                            <span class="text-sm text-gray-600">0</span>
-                            <span class="text-sm text-gray-600">1000</span>
-                        </div>
+                        <input type="number" name="delta_t" id="delta_t" value="120" min="0" max="1000" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                     </div>
                 </div>
             </div>             
@@ -126,11 +110,7 @@
                 <div class="grow">
                     <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Iterations</label>
                     <div class="relative w-full">
-                        <input type="range" name="iterations" id="iterations" value="720" min="0" max="10000" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
-                        <div class="-mt-2 flex w-full justify-between">
-                            <span class="text-sm text-gray-600">0</span>
-                            <span class="text-sm text-gray-600">10000</span>
-                        </div>
+                        <input type="number" name="iterations" id="iterations" value="720" min="0" max="10000" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                     </div>
                 </div>
             </div>
@@ -138,11 +118,7 @@
                 <div class="grow">
                     <label for="initial_temperature" class="block text-sm font-medium leading-6 text-gray-900">Initial Temperature (°C)</label>
                     <div class="relative w-full">
-                        <input type="range" name="initial_temperature" id="initial_temperature" value="30" min="0" max="50" class="accent-orange w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
-                        <div class="-mt-2 flex w-full justify-between">
-                            <span class="text-sm text-gray-600">0</span>
-                            <span class="text-sm text-gray-600">50</span>
-                        </div>
+                        <input type="number" name="initial_temperature" id="initial_temperature" value="30" min="0" max="50" class="accent-orange w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
                     </div>
                 </div>
             </div>
@@ -206,11 +182,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Max Windspeed (m/s)</label>
                             <div class="relative w-full">
-                                <input type="range" name="max_windspeed" id="max_windspeed" step="1" value="8" min="0" max="30" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
-                                <div class="-mt-2 flex w-full justify-between">
-                                    <span class="text-sm text-gray-600">0</span>
-                                    <span class="text-sm text-gray-600">30</span>
-                                </div>
+                                <input type="number" name="max_windspeed" id="max_windspeed" step="1" value="8" min="0" max="30" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                             </div>
                         </div>
                     </div>
@@ -218,21 +190,13 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Inflow Velocity</label>
                             <div class="relative w-full">
-                                <input type="range" name="inflow_velocity" id="inflow_velocity" step="0.01" value="0.04" min="0" max="1" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
-                                <div class="-mt-2 flex w-full justify-between">
-                                    <span class="text-sm text-gray-600">0</span>
-                                    <span class="text-sm text-gray-600">0.01</span>
-                                </div>
+                                <input type="number" name="inflow_velocity" id="inflow_velocity" step="0.01" value="0.04" min="0" max="1" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                             </div>
                         </div>
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Relaxation Parameter</label>
                             <div class="relative w-full">
-                                <input type="range" name="relaxation_parameter" id="relaxation_parameter" step="0.1" value="2" min="0" max="4" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
-                                <div class="-mt-2 flex w-full justify-between">
-                                    <span class="text-sm text-gray-600">0</span>
-                                    <span class="text-sm text-gray-600">4</span>
-                                </div>
+                                <input type="number" name="relaxation_parameter" id="relaxation_parameter" step="0.1" value="2" min="0" max="4" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                             </div>
                         </div>
                     </div>
@@ -249,7 +213,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Radiation (W/m2)</label>
                             <div class="relative w-full">
-                                <input type="range" name="radiation" id="radiation" value="300" min="0" max="1000" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" name="radiation" id="radiation" value="300" min="0" max="1000" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">1000</span>
@@ -259,7 +223,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Obstacle Height (m)</label>
                             <div class="relative w-full">
-                                <input type="range" name="obstacle_height" id="obstacle_height" value="10" min="0" max="100" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" name="obstacle_height" id="obstacle_height" value="10" min="0" max="100" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">100</span>
@@ -281,7 +245,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Density (kg/m³)</label>
                             <div class="relative w-full">
-                                <input type="range" id="greenspace_density" onchange="data[0][0] = document.getElementById('greenspace_density').value" value="1700" min="0" max="4000" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="greenspace_density" onchange="data[0][0] = document.getElementById('greenspace_density').value" value="1700" min="0" max="4000" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">4000</span>
@@ -291,7 +255,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Specific Heat Capacity</label>
                             <div class="relative w-full">
-                                <input type="range" id="greenspace_heatcapacity" onchange="data[0][1] = document.getElementById('greenspace_heatcapacity').value" value="1000" min="0" max="5000" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="greenspace_heatcapacity" onchange="data[0][1] = document.getElementById('greenspace_heatcapacity').value" value="1000" min="0" max="5000" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">5000</span>
@@ -301,7 +265,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Thermal conductivity</label>
                             <div class="relative w-full">
-                                <input type="range" id="greenspace_diffusion" onchange="data[0][2] = document.getElementById('greenspace_diffusion').value" value="300" min="0" max="1000" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="greenspace_diffusion" onchange="data[0][2] = document.getElementById('greenspace_diffusion').value" value="300" min="0" max="1000" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">1000</span>
@@ -311,7 +275,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Albedo</label>
                             <div class="relative w-full">
-                                <input type="range" id="greenspace_albedo" onchange="data[0][3] = document.getElementById('greenspace_albedo').value" step="0.01" value="0.21" min="0" max="1" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="greenspace_albedo" onchange="data[0][3] = document.getElementById('greenspace_albedo').value" step="0.01" value="0.21" min="0" max="1" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">1</span>
@@ -323,7 +287,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Evapotraspiration per month (mm)</label>
                             <div class="relative w-full">
-                                <input type="range" id="greenspace_evapotranspiration" onchange="data[0][4] = document.getElementById('greenspace_evapotranspiration').value" value="240" min="0" max="400" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="greenspace_evapotranspiration" onchange="data[0][4] = document.getElementById('greenspace_evapotranspiration').value" value="240" min="0" max="400" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">4000</span>
@@ -345,7 +309,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Density</label>
                             <div class="relative w-full">
-                                <input type="range" id="water_density" onchange="data[1][0] = document.getElementById('water_density').value" value="997" min="0" max="4000" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="water_density" onchange="data[1][0] = document.getElementById('water_density').value" value="997" min="0" max="4000" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">4000</span>
@@ -355,7 +319,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Specific Heat Capacity</label>
                             <div class="relative w-full">
-                                <input type="range" id="water_heatcapacity" onchange="data[1][1] = document.getElementById('water_heatcapacity').value" value="4190" min="0" max="5000" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="water_heatcapacity" onchange="data[1][1] = document.getElementById('water_heatcapacity').value" value="4190" min="0" max="5000" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">5000</span>
@@ -365,7 +329,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Thermal conductivity</label>
                             <div class="relative w-full">
-                                <input type="range" id="water_diffiusion" onchange="data[1][2] = document.getElementById('water_diffiusion').value" value="300" min="0" max="1000" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="water_diffiusion" onchange="data[1][2] = document.getElementById('water_diffiusion').value" value="300" min="0" max="1000" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">1000</span>
@@ -375,7 +339,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Albedo</label>
                             <div class="relative w-full">
-                                <input type="range" id="water_albedo" onchange="data[1][3] = document.getElementById('water_albedo').value" step="0.01" value="0.05" min="0" max="1" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="water_albedo" onchange="data[1][3] = document.getElementById('water_albedo').value" step="0.01" value="0.05" min="0" max="1" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">1</span>
@@ -387,7 +351,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Evapotraspiration per month (mm)</label>
                             <div class="relative w-full">
-                                <input type="range" id="water_evapotranspiration" onchange="data[1][4] = document.getElementById('water_evapotranspiration').value" value="240" min="0" max="400" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="water_evapotranspiration" onchange="data[1][4] = document.getElementById('water_evapotranspiration').value" value="240" min="0" max="400" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">4000</span>
@@ -409,7 +373,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Density</label>
                             <div class="relative w-full">
-                                <input type="range" id="asphalt_density" onchange="data[2][0] = document.getElementById('asphalt_density').value" value="2120" min="0" max="4000" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="asphalt_density" onchange="data[2][0] = document.getElementById('asphalt_density').value" value="2120" min="0" max="4000" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">4000</span>
@@ -419,7 +383,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Specific Heat Capacity</label>
                             <div class="relative w-full">
-                                <input type="range" id="asphalt_heatcapacity" onchange="data[2][1] = document.getElementById('asphalt_heatcapacity').value" value="920" min="0" max="5000" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="asphalt_heatcapacity" onchange="data[2][1] = document.getElementById('asphalt_heatcapacity').value" value="920" min="0" max="5000" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">5000</span>
@@ -429,7 +393,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Thermal conductivity</label>
                             <div class="relative w-full">
-                                <input type="range" id="asphalt_diffusion" onchange="data[2][2] = document.getElementById('asphalt_diffusion').value" value="300" min="0" max="1000" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="asphalt_diffusion" onchange="data[2][2] = document.getElementById('asphalt_diffusion').value" value="300" min="0" max="1000" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">1000</span>
@@ -439,7 +403,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Albedo</label>
                             <div class="relative w-full">
-                                <input type="range" id="asphalt_albedo" onchange="data[2][3] = document.getElementById('asphalt_albedo').value" step="0.01" value="0.18" min="0" max="1" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="asphalt_albedo" onchange="data[2][3] = document.getElementById('asphalt_albedo').value" step="0.01" value="0.18" min="0" max="1" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">1</span>
@@ -451,7 +415,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Evapotraspiration per month (mm)</label>
                             <div class="relative w-full">
-                                <input type="range" id="asphalt_evapotranspiration" onchange="data[2][4] = document.getElementById('asphalt_evapotranspiration').value" value="240" min="0" max="400" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="asphalt_evapotranspiration" onchange="data[2][4] = document.getElementById('asphalt_evapotranspiration').value" value="240" min="0" max="400" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">4000</span>
@@ -473,7 +437,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Density</label>
                             <div class="relative w-full">
-                                <input type="range" id="building_density" onchange="data[3][0] = document.getElementById('building_density').value" value="1400" min="0" max="4000" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="building_density" onchange="data[3][0] = document.getElementById('building_density').value" value="1400" min="0" max="4000" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">4000</span>
@@ -483,7 +447,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Specific Heat Capacity</label>
                             <div class="relative w-full">
-                                <input type="range" id="building_heatcapacity" onchange="data[3][1] = document.getElementById('building_heatcapacity').value" value="836" min="0" max="5000" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="building_heatcapacity" onchange="data[3][1] = document.getElementById('building_heatcapacity').value" value="836" min="0" max="5000" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">5000</span>
@@ -493,7 +457,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Thermal conductivity</label>
                             <div class="relative w-full">
-                                <input type="range" id="building_diffusion" onchange="data[3][2] = document.getElementById('building_diffusion').value" value="300" min="0" max="1000" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="building_diffusion" onchange="data[3][2] = document.getElementById('building_diffusion').value" value="300" min="0" max="1000" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">1000</span>
@@ -503,7 +467,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Albedo</label>
                             <div class="relative w-full">
-                                <input type="range" id="building_albedo" onchange="data[3][3] = document.getElementById('building_albedo').value" step="0.01" value="0.18" min="0" max="1" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="building_albedo" onchange="data[3][3] = document.getElementById('building_albedo').value" step="0.01" value="0.18" min="0" max="1" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">1</span>
@@ -515,7 +479,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Evapotraspiration per month (mm)</label>
                             <div class="relative w-full">
-                                <input type="range" id="building_evapotranspiration" onchange="data[3][4] = document.getElementById('building_evapotranspiration').value" value="240" min="0" max="400" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="building_evapotranspiration" onchange="data[3][4] = document.getElementById('building_evapotranspiration').value" value="240" min="0" max="400" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">4000</span>
@@ -537,7 +501,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Density</label>
                             <div class="relative w-full">
-                                <input type="range" id="tree_albedo" onchange="data[4][0] = document.getElementById('tree_density').value" value="1700" min="0" max="4000" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="tree_albedo" onchange="data[4][0] = document.getElementById('tree_density').value" value="1700" min="0" max="4000" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">4000</span>
@@ -547,7 +511,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Specific Heat Capacity</label>
                             <div class="relative w-full">
-                                <input type="range" id="tree_heatcapacity" onchange="data[4][1] = document.getElementById('tree_heatcapacity').value" value="1000" min="0" max="5000" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="tree_heatcapacity" onchange="data[4][1] = document.getElementById('tree_heatcapacity').value" value="1000" min="0" max="5000" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">5000</span>
@@ -557,7 +521,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Thermal conductivity</label>
                             <div class="relative w-full">
-                                <input type="range" id="tree_diffusion" onchange="data[4][2] = document.getElementById('tree_diffusion').value" value="300" min="0" max="1000" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="tree_diffusion" onchange="data[4][2] = document.getElementById('tree_diffusion').value" value="300" min="0" max="1000" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">1000</span>
@@ -567,7 +531,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Albedo</label>
                             <div class="relative w-full">
-                                <input type="range" id="tree_albedo" onchange="data[4][3] = document.getElementById('tree_albedo').value" step="0.01" value="0.17" min="0" max="1" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="tree_albedo" onchange="data[4][3] = document.getElementById('tree_albedo').value" step="0.01" value="0.17" min="0" max="1" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">1</span>
@@ -579,7 +543,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Flow-Trough rate</label>
                             <div class="relative w-full">
-                                <input type="range" id="tree_flowtroughrate" value="300" min="0" max="1000" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="tree_flowtroughrate" value="300" min="0" max="1000" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">1000</span>
@@ -591,7 +555,7 @@
                         <div class="grow flex flex-col flex-wrap">
                             <label for="price" class="block text-sm font-medium leading-6 text-gray-900">Evapotraspiration per month (mm)</label>
                             <div class="relative w-full">
-                                <input type="range" id="tree_evapotranspiration" onchange="data[4][4] = document.getElementById('tree_evapotranspiration').value" value="240" min="0" max="400" class="accent-orange block w-full border-0 py-1.5 pl-3 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6" placeholder="50">
+                                <input type="number" id="tree_evapotranspiration" onchange="data[4][4] = document.getElementById('tree_evapotranspiration').value" value="240" min="0" max="400" class="block w-full border border-gray-400 py-1.5 px-3 rounded-lg placeholder:text-gray-400 sm:text-sm sm:leading-6 bg-gray-100" placeholder="50">
                                 <div class="-mt-2 flex w-full justify-between">
                                     <span class="text-sm text-gray-600">0</span>
                                     <span class="text-sm text-gray-600">4000</span>
