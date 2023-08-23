@@ -11,7 +11,7 @@ const MapEditor = () => {
 
     const [brush, setBrush] = useState(1)
     const [brushColor, setBrushColor] = useState(surfaceData[0].hexcolor)
-    const [brushSize, setBrushSize] = useState(simulationSettings.deltaX / 3)
+    const [brushSize, setBrushSize] = useState(simulationSettings.pointsX / 10)
 
     const numPixelsX = parseInt(simulationSettings.pointsX)
     const numPixelsY = parseInt(simulationSettings.pointsY)
@@ -41,7 +41,7 @@ const MapEditor = () => {
                 const posX = x + i;
                 const posY = y + j;
 
-                let newData = data
+                let newData = [...data.map(row => [...row])]
                 newData[posX][posY] = brush
                 setData(newData)
             }
@@ -65,9 +65,7 @@ const MapEditor = () => {
     };
 
     const handleMouseClick = (event) => {
-        if (brushSize === 1) {
-            drawPixels(event);
-        }
+        drawPixels(event);
     };
 
     const changeBrushSize = () => {
@@ -120,7 +118,7 @@ const MapEditor = () => {
                                             name='brushSize'
                                             id='brushSize'
                                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            defaultValue={Math.floor(parseInt(simulationSettings.deltaX) / 3)}
+                                            defaultValue={Math.floor(parseInt(simulationSettings.pointsX) / 10)}
                                             onChange={changeBrushSize}
                                         />
                                     </div>
