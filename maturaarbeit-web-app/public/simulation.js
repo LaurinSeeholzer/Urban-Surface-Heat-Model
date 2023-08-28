@@ -276,7 +276,7 @@ class Simulation {
             if ((time + 1) % 10 === 0) {
                 postMessage({ type: 'message', data: `Iteration ${time + 1} / ${this.iterations}` });
             }
-            if ((time + 1) % (this.iterations / 10) === 0){ ///&& time >= 1000) {
+            if ((time + 1) % (this.iterations / 20) === 0){ ///&& time >= 1000) {
                 postMessage(temp)
             }
         }

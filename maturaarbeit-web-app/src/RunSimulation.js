@@ -58,6 +58,7 @@ const RunSimulation = () => {
         data.conductivity = conductivity
         data.evapotranspiration = evapotranspiration
         data.useAirflow = JSON.parse(simulationSettings.useAirflow)
+        console.log(data)
         simWorker.postMessage(data);
     }
     simWorker.onmessage = event => {
