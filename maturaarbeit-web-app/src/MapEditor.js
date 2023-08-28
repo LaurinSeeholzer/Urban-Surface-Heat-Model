@@ -7,10 +7,9 @@ const MapEditor = () => {
     const surfaceData = JSON.parse(localStorage.getItem('surfaceData'))
     const simulationSettings = JSON.parse(localStorage.getItem('formData'))
 
-    const [data, setData] = useState( new Array(parseInt(simulationSettings.pointsX)).fill(0).map(() => new Array(parseInt(simulationSettings.pointsY)).fill(0)))
+    const [mapData, setMapData] = useState(new Array(parseInt(simulationSettings.pointsX)).fill(0).map(() => new Array(parseInt(simulationSettings.pointsY)).fill(0)))
 
-    const [brush, setBrush] = useState(1)
-    const [brushColor, setBrushColor] = useState(surfaceData[0].hexcolor)
+    const [brushColor, setBrushColor] = useState(surfaceData[0].color)
     const [brushSize, setBrushSize] = useState(simulationSettings.pointsX / 10)
 
     const numPixelsX = parseInt(simulationSettings.pointsX)
@@ -29,23 +28,16 @@ const MapEditor = () => {
         setCanvasWidth(canvas.parentElement.clientWidth); // Set canvas width to parent container's width
     }, []);
 
+    useEffect(() => {
+        localStorage.setItem('mapData', JSON.stringify(mapData));
+    }, [mapData]);
+
     const drawPixels = (event) => {
         if (!isPainting) return;
 
         const { offsetX, offsetY } = event.nativeEvent;
         const x = Math.floor(offsetX / pixelSize);
         const y = Math.floor(offsetY / pixelSize);
-
-        for (let i = 0; i < brushSize; i++) {
-            for (let j = 0; j < brushSize; j++) {
-                const posX = x + i;
-                const posY = y + j;
-
-                let newData = [...data.map(row => [...row])]
-                newData[posX][posY] = brush
-                setData(newData)
-            }
-        }
 
         context.fillStyle = brushColor;
         context.fillRect(x * pixelSize, y * pixelSize, brushSize * pixelSize, brushSize * pixelSize);
@@ -75,21 +67,72 @@ const MapEditor = () => {
 
     const changeBrush = () => {
         let input = parseInt(document.getElementById("brush").value)
-        let color = surfaceData[input].hexcolor
-        console.log(data)
-        setBrush(input)
+        let color = surfaceData[input].color
         setBrushColor(color)
+    }
+
+    const generateData = () => {
+        const surfaceData = JSON.parse(localStorage.getItem('surfaceData'))
+        const simulationSettings = JSON.parse(localStorage.getItem('formData'))
+        const surfaceColorData = []
+        const pointsX = simulationSettings.pointsX
+        const pointsY = simulationSettings.pointsY
+
+        for (const surface of surfaceData) {
+            surfaceColorData[surface.color] = surface.id
+        }
+
+        const canvas = document.getElementById('myCanvas');
+        const ctx = canvas.getContext("2d");
+
+        const pixelArray = [];
+
+        const pixelWidth = canvas.width / pointsX;
+        const pixelHeight = canvas.height / pointsY;
+    
+        for (let x = 0; x < pointsX; x++) {
+            const column = [];
+            for (let y = pointsY - 1; y >= 0; y--) {
+                const sampleX = Math.floor(x * pixelWidth + pixelWidth / 2);
+                const sampleY = Math.floor(y * pixelHeight + pixelHeight / 2);
+    
+                const pixelData = ctx.getImageData(sampleX, sampleY, 1, 1).data;
+                const red = pixelData[0];
+                const green = pixelData[1];
+                const blue = pixelData[2];
+                const colorString = `rgb(${red},${green},${blue})`;
+                column.push(surfaceColorData[colorString]);
+                console.log(x, y, colorString, surfaceColorData[colorString])
+            }
+            pixelArray.push(column);
+        }
+        setMapData(pixelArray)
+        handleDownload();
+    };
+
+    const handleDownload = () => {
+        const canvas = canvasRef.current
+
+        const dataURL = canvas.toDataURL("image/png");
+
+        const downloadLink = document.createElement("a");
+        downloadLink.href = dataURL;
+        downloadLink.download = "map_raw.png";
+
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
     }
 
     return (
         <div className='grid grid-cols-1 gap-4'>
-            <PageTitle title='Map Editor' back='/simulationsettings' />
+            <PageTitle title='Map Editor' back='/simulationsettings' next='/runsimulation'/>
             <div className="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white">
                 <div className="flow-root">
                     <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                         <div className="inline-block min-w-full py-2 align-middle px-4 sm:px-6 lg:px-8">
                             <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                                <div className="sm:col-span-4">
+                                <div className="sm:col-span-3">
                                     <div>
                                         <label htmlFor="location" className="block text-sm font-medium leading-6 text-gray-900">
                                             Select Surface Material
@@ -123,6 +166,17 @@ const MapEditor = () => {
                                         />
                                     </div>
                                 </div>
+                                <div className='sm:col-span-1'>
+                                    <div className="mt-8">
+                                    <button
+                                        onClick={generateData}
+                                        type="button"
+                                        className="w-full rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                    >
+                                        Save Map
+                                    </button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -134,6 +188,7 @@ const MapEditor = () => {
                         <div className="inline-block min-w-full py-2 align-middle px-4 sm:px-6 lg:px-8">
                             <div>
                                 <canvas
+                                    id='myCanvas'
                                     ref={canvasRef}
                                     width={canvasWidth}
                                     height={pixelSize * numPixelsY}

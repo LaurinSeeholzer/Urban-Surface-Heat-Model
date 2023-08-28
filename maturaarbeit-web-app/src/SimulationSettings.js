@@ -9,21 +9,21 @@ export default function SimulationSettings() {
     const storedFormData = JSON.parse(localStorage.getItem('formData'))
 
     const [formData, setFormData] = useState(storedFormData || {
-        pointsX: 50,
-        pointsY: 50,
+        pointsX: 200,
+        pointsY: 200,
         deltaX: 1,
-        date: "2022-08-22T03:30",
-        iterations: 1440,
+        date: "2012-01-01T02:00",
+        iterations: 2880,
         deltaTime: 60,
-        geoLatitude: 47.063830,
-        geoLongitude: 8.274267,
-        initialTemperature: 30,
-        radiation: 600,
-        obstacleHeight: 12,
+        geoLatitude: -33.79955532256849,
+        geoLongitude: 150.9778614130294,
+        initialTemperature: 37.4,
+        radiation: 650,
+        obstacleHeight: 6,
         useAirflow: "true",
-        maxWindSpeed: 6,
-        relaxationParameter: 1.973,
-        inflowVelocity: 0.4,
+        maxWindSpeed: 4.5,
+        relaxationParameter: 1.978417266,
+        inflowVelocity: 0.04,
     });
 
     const clearLocalStorage = () => {
@@ -40,31 +40,15 @@ export default function SimulationSettings() {
 
     const handleSubmit = () => {
         // Save form data to local storage
-        console.log(formData)
         localStorage.setItem('formData', JSON.stringify(formData));
     };
 
 
     return (
-        <div className='grid grid-cols-1 gap-4'><PageTitle title='Simulation Settings' back='/surfacematerials' next='/mapeditor' />
+        <div className='grid grid-cols-1 gap-4'>
+            <PageTitle title='Simulation Settings' back='/surfacematerials' next='/mapeditor' />
             <div className="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white">
-                <div className="sm:flex sm:items-center">
-                    <div className="sm:flex-auto">
-                        <h1 className="text-base font-semibold leading-6 text-gray-900">Surface Data</h1>
-                        <p className="mt-2 text-sm text-gray-700">
-                            Set all the properties of your diffrent surfaces to use them in the simulation
-                        </p>
-                    </div>
-                    <div className="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-                        <button
-                            onClick={handleSubmit}
-                            type="button"
-                            className="block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-                        >
-                            Save
-                        </button>
-                    </div>
-                </div>
+
                 <div className="space-y-12">
                     <div>
                         <div className="mt-3 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">

@@ -8,13 +8,16 @@ import {
   TableCellsIcon,
   HomeIcon,
   XMarkIcon,
+  RocketLaunchIcon,
+  MapIcon,
 } from '@heroicons/react/24/outline'
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: HomeIcon},
   { name: 'Surface Materials', href: '/surfacematerials', icon: TableCellsIcon},
   { name: 'Simulation Settings', href: '/simulationsettings', icon: AdjustmentsHorizontalIcon},
-  { name: 'Map Editor', href: '/mapeditor', icon: AdjustmentsHorizontalIcon},
+  { name: 'Map Editor', href: '/mapeditor', icon: MapIcon},
+  { name: 'Run Simulation', href: '/runsimulation', icon: RocketLaunchIcon},
 ]
 
 function classNames(...classes) {

@@ -5,6 +5,7 @@ import SurfaceMaterials from './SurfaceMaterials.js'
 import SimulationSettings from './SimulationSettings.js'
 import SideBar from './SideBar.js'
 import MapEditor from './MapEditor.js'
+import RunSimulation from './RunSimulation.js'
 
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
                         <Route path="/surfacematerials" element={<SurfaceMaterials />} />
                         <Route path="/simulationsettings" element={<SimulationSettings />} />
                         <Route path="/mapeditor" element={<MapEditor />} />
+                        <Route path="/runsimulation" element={<RunSimulation />} />
                     </Routes>
                 </div>
             </main>

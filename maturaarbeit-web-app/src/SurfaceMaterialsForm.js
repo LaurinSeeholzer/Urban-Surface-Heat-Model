@@ -12,14 +12,17 @@ export default function SurfaceMaterialsForm({ addSurface }) {
                 <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="inline-block min-w-full py-2 align-middle px-4 sm:px-6 lg:px-8">
                         <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-                            <div className="sm:col-span-3">
+                            <div className="sm:col-span-2">
                                 <InputField id="name" label="Name" type="text" />
                             </div>
                             <div className="sm:col-span-2">
-                                <InputField id="hexcolor" label="Hex Color" type="text" />
+                                <InputField id="color" label="Color" type="text" />
                             </div>
                             <div className="sm:col-span-1">
                                 <InputField id="boundary" label="Boundary" type="text" />
+                            </div>
+                            <div className="sm:col-span-1">
+                                <InputField id="airresistence" label="Arresistence" type="text" />
                             </div>
                             <div className="sm:col-span-1">
                                 <InputField id="density" label="Density" type="number" />

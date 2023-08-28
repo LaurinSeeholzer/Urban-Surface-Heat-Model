@@ -20,13 +20,19 @@ export default function Table({ surfaceData, deleteSurface }) {
                                         scope="col"
                                         className="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900"
                                     >
-                                        Hex-Color
+                                        Color
                                     </th>
                                     <th
                                         scope="col"
                                         className="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900"
                                     >
                                         Boundary
+                                    </th>
+                                    <th
+                                        scope="col"
+                                        className="whitespace-nowrap px-2 py-3.5 text-left text-sm font-semibold text-gray-900"
+                                    >
+                                        Airresistence
                                     </th>
                                     <th
                                         scope="col"
@@ -67,8 +73,9 @@ export default function Table({ surfaceData, deleteSurface }) {
                                 {surfaceData.map((item) => (
                                     <tr key={item.id}>
                                         <td className="whitespace-nowrap px-2 py-2 text-sm text-gray-900">{item.name}</td>
-                                        <td className="whitespace-nowrap px-2 py-2 text-sm text-gray-500">{item.hexcolor}</td>
+                                        <td className="whitespace-nowrap px-2 py-2 text-sm text-gray-500">{item.color}</td>
                                         <td className="whitespace-nowrap px-2 py-2 text-sm text-gray-500">{item.boundary}</td>
+                                        <td className="whitespace-nowrap px-2 py-2 text-sm text-gray-500">{item.airresistence}</td>
                                         <td className="whitespace-nowrap px-2 py-2 text-sm text-gray-500">{item.density}</td>
                                         <td className="whitespace-nowrap px-2 py-2 text-sm text-gray-500">{item.albedo}</td>
                                         <td className="whitespace-nowrap px-2 py-2 text-sm text-gray-500">{item.heatcapacity}</td>

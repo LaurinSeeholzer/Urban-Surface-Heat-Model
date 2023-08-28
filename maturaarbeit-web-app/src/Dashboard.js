@@ -1,10 +1,8 @@
 import React from 'react';
-import CanvasPainter from './CanvasPainter';
 
 const Dashboard = () => {
   return (
     <div>
-         <CanvasPainter numPixelsX={10} numPixelsY={3} brushSize={2}/>
       <h2>Home Page</h2>
       <p>Welcome to the home page content.</p>
       <input type="number" name="deltaTime" id="deltaTime" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="1" value="1"></input>
