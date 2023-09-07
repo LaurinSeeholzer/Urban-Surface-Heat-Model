@@ -1,9 +1,9 @@
-importScripts('./simulation.js');
+importScripts('./new_simulation.js');
 importScripts('./utils.js');
 
 self.onmessage = e => {
     let d = e.data
-    let sim = new Simulation(
+    let params = new Params(
         d.pointsX, 
         d.pointsY,
         d.iterations, 
@@ -28,6 +28,7 @@ self.onmessage = e => {
         d.geoLatitude, 
         d.useAirflow
     )
-    let result = sim.run()
+    let sim = new Simulation();
+    let result = sim.run(params)
     self.postMessage(result);
   };

@@ -77,11 +77,7 @@ export default function SideBar() {
                   {/* Sidebar component, swap this element with another sidebar if you like */}
                   <div className="flex grow flex-col gap-y-5 overflow-y-auto bg-white px-6 pb-2">
                     <div className="flex h-16 shrink-0 items-center">
-                      <img
-                        className="h-8 w-auto"
-                        src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                        alt="Your Company"
-                      />
+                        logo
                     </div>
                     <nav className="flex flex-1 flex-col">
                       <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -94,14 +90,14 @@ export default function SideBar() {
                                   href={item.href}
                                   className={classNames(
                                     location.pathname === item.href
-                                      ? 'bg-gray-50 text-indigo-600'
-                                      : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
+                                      ? 'bg-gray-50 text-accentcolor'
+                                      : 'text-gray-700 hover:text-accentcolor hover:bg-gray-50',
                                     'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                                   )}
                                 >
                                   <item.icon
                                     className={classNames(
-                                        location.pathname === item.href ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600',
+                                        location.pathname === item.href ? 'text-accentcolor' : 'text-gray-400 group-hover:text-accentcolor',
                                       'h-6 w-6 shrink-0'
                                     )}
                                     aria-hidden="true"
@@ -127,11 +123,7 @@ export default function SideBar() {
           {/* Sidebar component, swap this element with another sidebar if you like */}
           <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">
             <div className="flex h-16 shrink-0 items-center">
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt="Your Company"
-              />
+                logo
             </div>
             <nav className="flex flex-1 flex-col">
               <ul role="list" className="flex flex-1 flex-col gap-y-7">
@@ -144,14 +136,14 @@ export default function SideBar() {
                           href={item.href}
                           className={classNames(
                             location.pathname === item.href
-                              ? 'bg-gray-50 text-indigo-600'
-                              : 'text-gray-700 hover:text-indigo-600 hover:bg-gray-50',
+                              ? 'bg-gray-50 text-accentcolor'
+                              : 'text-gray-700 hover:text-accentcolor hover:bg-gray-50',
                             'group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold'
                           )}
                         >
                           <item.icon
                             className={classNames(
-                                location.pathname === item.href ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600',
+                                location.pathname === item.href ? 'text-accentcolor' : 'text-gray-400 group-hover:text-accentcolor',
                               'h-6 w-6 shrink-0'
                             )}
                             aria-hidden="true"
@@ -176,14 +168,6 @@ export default function SideBar() {
           <div className="flex-1 text-sm font-semibold leading-6 text-gray-900">
             {currentPageTitle}
           </div>
-          <a href="#">
-            <span className="sr-only">Your profile</span>
-            <img
-              className="h-8 w-8 rounded-full bg-gray-50"
-              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-              alt=""
-            />
-          </a>
         </div>
     </>
   )

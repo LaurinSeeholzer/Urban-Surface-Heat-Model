@@ -1,7 +1,4 @@
-import { Fragment, useState } from 'react'
-import { Dialog, Transition } from '@headlessui/react'
-import { CheckIcon, PlusIcon } from '@heroicons/react/24/outline'
-
+import { PlusIcon } from '@heroicons/react/24/outline'
 import InputField from './InputField'
 
 export default function SurfaceMaterialsForm({ addSurface }) {
@@ -13,31 +10,31 @@ export default function SurfaceMaterialsForm({ addSurface }) {
                     <div className="inline-block min-w-full py-2 align-middle px-4 sm:px-6 lg:px-8">
                         <div className="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
                             <div className="sm:col-span-2">
-                                <InputField id="name" label="Name" type="text" />
+                                <InputField id="name" placeholder="asphalt" label="Name" type="text" />
                             </div>
                             <div className="sm:col-span-2">
-                                <InputField id="color" label="Color" type="text" />
+                                <InputField id="color" placeholder="rgb(0,0,0)" label="Color" type="text" />
                             </div>
                             <div className="sm:col-span-1">
-                                <InputField id="boundary" label="Boundary" type="text" />
+                                <InputField id="boundary" placeholder="true / false" label="Boundary" type="text" />
                             </div>
                             <div className="sm:col-span-1">
-                                <InputField id="airresistence" label="Arresistence" type="text" />
+                                <InputField id="airresistence" placeholder="0.0 - 1.0" label="Arresistence" type="text" />
                             </div>
                             <div className="sm:col-span-1">
-                                <InputField id="density" label="Density" type="number" />
+                                <InputField id="density" placeholder="2200" label="Density (kg/m^3)" type="number" />
                             </div>
                             <div className="sm:col-span-1">
-                                <InputField id="albedo" label="Albedo" type="number" />
+                                <InputField id="albedo" placeholder="0.0 - 0.1" label="Albedo" type="number" />
                             </div>
                             <div className="sm:col-span-2">
-                                <InputField id="heatcapacity" label="Heatcapacity" type="number" />
+                                <InputField id="heatcapacity" placeholder="920" label="Heatcapacity (J/(kg K)" type="number" />
                             </div>
                             <div className="sm:col-span-2">
-                                <InputField id="thermalconductivity" label="Thermalconductivity" type="number" />
+                                <InputField id="thermalconductivity" placeholder="0.75" label="Thermalconductivity (W/(m K))" type="number" />
                             </div>
                             <div className="sm:col-span-6">
-                                <InputField id="evapotranspiration" label="Evapotranspiration" type="number" />
+                                <InputField id="evapotranspiration" placeholder="0.002" label="Evapotranspiration (m/day)" type="number" />
                             </div>
                         </div>
                     </div>
@@ -47,7 +44,7 @@ export default function SurfaceMaterialsForm({ addSurface }) {
                 <button
                     onClick={addSurface}
                     type="button"
-                    className="inline-flex items-center gap-x-1.5 rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="inline-flex items-center gap-x-1.5 rounded-md bg-accentcolor px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-accentcolorbright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentcolor"
                 >
                     Create New Surface
                     <PlusIcon className="-mr-0.5 h-5 w-5" aria-hidden="true" />
