@@ -44,7 +44,7 @@ const MapEditor = () => {
         for (let col = x; col < x + brushSize; col++) {
             for (let row = y; row < y + brushSize; row++) {
                 try {
-                    currentMapData[col][200 - row] = brush;
+                    currentMapData[col][simulationSettings.pointsY - (row + 1)] = brush;
                 } catch {}
             }
         }
