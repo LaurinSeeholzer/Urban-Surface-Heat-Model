@@ -1,5 +1,6 @@
 import { React, useState, useEffect, useRef } from 'react';
 import { RocketLaunchIcon, ArrowSmallLeftIcon } from '@heroicons/react/24/outline';
+import Plotly from 'plotly.js-dist-min'
 
 const RunSimulation = () => {
 
@@ -8,11 +9,11 @@ const RunSimulation = () => {
 
     const [mapData, setMapData] = useState(JSON.parse(localStorage.getItem('mapData')));
     const [result, setResult] = useState(null);
-    const [maxTemp, setMaxTemp] = useState(parseFloat(simulationSettings.initialTemperature).toFixed(1) + " °C")
-    const [minTemp, setMinTemp] = useState(parseFloat(simulationSettings.initialTemperature).toFixed(1) + " °C")
-    const [averageTemp, setAverageTemp] = useState(parseFloat(simulationSettings.initialTemperature).toFixed(1) + " °C")
+    const [maxTemp, setMaxTemp] = useState(parseFloat(simulationSettings.initialTemperature).toFixed(1))
+    const [minTemp, setMinTemp] = useState(parseFloat(simulationSettings.initialTemperature).toFixed(1))
+    const [averageTemp, setAverageTemp] = useState(parseFloat(simulationSettings.initialTemperature).toFixed(1))
     const [iteration, setIteration] = useState('-')
-    const [currentDate, setCurrentDate] = useState((new Date(simulationSettings.date)).toLocaleString('de', {year: 'numeric',month: '2-digit',day: '2-digit',hour: '2-digit',minute: '2-digit'}).replace(',', '').replace('-', '.'))
+    const [currentDate, setCurrentDate] = useState((new Date(simulationSettings.date)).toLocaleString('de', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).replace(',', '').replace('-', '.'))
 
     console.log(mapData)
 
@@ -26,13 +27,6 @@ const RunSimulation = () => {
     const [message, setMessage] = useState('Ready to run your simulation?');
     const [canvasWidth, setCanvasWidth] = useState(0);
     const pixelSize = canvasWidth / numPixelsX;
-
-    useEffect(() => {
-        const canvas = canvasRef.current;
-        const ctx = canvas.getContext('2d');
-        setContext(ctx);
-        setCanvasWidth(canvas.parentElement.clientWidth); // Set canvas width to parent container's width
-    }, []);
 
     const runSimulation = () => {
         let albedo = Array.from({ length: simulationSettings.pointsX }, () => Array(simulationSettings.pointsY).fill(0));
@@ -68,111 +62,163 @@ const RunSimulation = () => {
         console.log(data)
         simWorker.postMessage(data);
     }
+
+    let plotArea_3;
+    let plotData_3;
+    let plotLayout_3;
+
+    useEffect(() => {
+        plotData_3 = [
+            {
+                x: [],
+                y: [parseFloat(simulationSettings.initialTemperature)],
+                type: 'scatter',
+                mode: 'lines',
+                name: 'Max. Temp.',
+                line: {
+                    shape: 'spline',
+                  color: 'rgb(114, 21, 40)',
+                }
+            },
+            {
+                x: [],
+                y: [parseFloat(simulationSettings.initialTemperature)],
+                type: 'scatter',
+                mode: 'lines',
+                name: 'Min. Temp.',
+                line: {
+                    shape: 'spline',
+                    color: 'rgb(254, 253, 205)',
+                  }
+            },
+            {
+                x: [],
+                y: [parseFloat(simulationSettings.initialTemperature)],
+                type: 'scatter',
+                mode: 'lines',
+                name: 'Ave. Temp.',
+                line: {
+                    shape: 'spline',
+                    color: 'rgb(230, 148, 79)',
+                  }
+            }
+        ]
+
+        plotLayout_3 = {
+            autosize: true,
+            showlegend: true,
+            xaxis: {
+                showline: true,
+                showgrid: true,
+            },
+            yaxis: {
+                showline: true,
+                showgrid: true,
+                zeroline: true,
+            }
+        }
+
+        plotArea_3 = document.getElementById("plotArea_3")
+        Plotly.newPlot('plotArea_3', plotData_3, plotLayout_3)
+    }, [])
+
     simWorker.onmessage = event => {
         if (event.data.type === 'status') {
-            setAverageTemp(event.data.data.averageTemp.toFixed(1) + " °C")
-            setMinTemp(event.data.data.minTemp.toFixed(1) + " °C")
-            setMaxTemp(event.data.data.maxTemp.toFixed(1) + " °C")
+            setAverageTemp(event.data.data.averageTemp.toFixed(1))
+            setMinTemp(event.data.data.minTemp.toFixed(1))
+            setMaxTemp(event.data.data.maxTemp.toFixed(1))
             setIteration(event.data.data.iteration)
-            setCurrentDate(event.data.data.currentDate.toLocaleString('de', {year: 'numeric',month: '2-digit',day: '2-digit',hour: '2-digit',minute: '2-digit'}).replace(',', '').replace(/\//g, '.'))
+            setCurrentDate(event.data.data.currentDate.toLocaleString('de', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).replace(',', '').replace(/\//g, '.'))
+            plotData_3[0].y.push(parseFloat(event.data.data.maxTemp.toFixed(1)))
+            plotData_3[1].y.push(parseFloat(event.data.data.minTemp.toFixed(1)))
+            plotData_3[2].y.push(parseFloat(event.data.data.averageTemp.toFixed(1)))
+            plotData_3[0].x.push(event.data.data.currentDate.toLocaleString('de', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).replace(',', '').replace(/\//g, '.'))
+            plotData_3[1].x.push(event.data.data.currentDate.toLocaleString('de', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).replace(',', '').replace(/\//g, '.'))
+            plotData_3[2].x.push(event.data.data.currentDate.toLocaleString('de', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).replace(',', '').replace(/\//g, '.'))
+            Plotly.update(plotArea_3, plotData_3, plotLayout_3)
         } else {
-            const surfaceData = JSON.parse(localStorage.getItem('surfaceData'))
-            const simulationSettings = JSON.parse(localStorage.getItem('simulationData'))
-            const surfaceColorData = []
-            const pointsX = simulationSettings.pointsX
-            const pointsY = simulationSettings.pointsY
-
-            for (const surface of surfaceData) {
-                surfaceColorData[surface.color] = surface.id
-            }
-
-            const canvas = document.getElementById('myCanvas');
-            const ctx = canvas.getContext("2d");
-
-            const array = event.data
-
-            const newArray = [];
-
-            // Find the minimum and maximum values in the array
-            let minValue = array[0][0];
-            let maxValue = array[0][0];
-            let sumValue = 0;
-
-            for (let x = 0; x < array.length; x++) {
-                for (let y = 0; y < array[x].length; y++) {
-                    minValue = Math.min(minValue, array[x][y]);
-                    maxValue = Math.max(maxValue, array[x][y]);
-                    sumValue += array[x][y]
-                }
-            }
-
-            setMinTemp(minValue.toFixed(1) + " °C")
-            setMaxTemp(maxValue.toFixed(1) + " °C")
-            setAverageTemp((sumValue / (array.length * array[0].length)).toFixed(1) + " °C")
-
-            canvas.classList.remove('hidden')
-
-
-            const ParramataHeatMapColors = [
-                'rgb(43, 38, 245)', 'rgb(77, 100, 242)', 'rgb(107, 170, 245)', 'rgb(86, 113, 31)', 'rgb(163, 164, 51)',
-                'rgb(251, 251, 195)', 'rgb(229, 159, 56)', 'rgb(202, 86, 36)', 'rgb(100, 17, 9)', 'rgb(150, 45, 219)'
-            ];
-
-            const pixelWidth = canvas.width / pointsX;
-            const pixelHeight = canvas.height / pointsY;
-
-            function mapValueToColorParramataHeatMap(value) {
-                if (value >= 10 && value <= 22) {
-                    return 0;
-                } else if (value <= 25) {
-                    return 1;
-                } else if (value > 25 && value <= 28) {
-                    return 2;
-                } else if (value > 28 && value <= 31) {
-                    return 3;
-                } else if (value > 31 && value <= 34) {
-                    return 4;
-                } else if (value > 34 && value <= 37) {
-                    return 5;
-                } else if (value > 37 && value <= 40) {
-                    return 6;
-                } else if (value > 40 && value <= 43) {
-                    return 7;
-                } else if (value > 43 && value <= 48) {
-                    return 8;
-                } else {
-                    return 9;
-                }
-            }
-
-            for (let x = 0; x < pointsX; x++) {
-                for (let y = 0; y < pointsY; y++) {
-                    ctx.fillStyle = ParramataHeatMapColors[mapValueToColorParramataHeatMap(array[x][y])];
-                    ctx.fillRect(x * pixelWidth, (pointsY - y - 1) * pixelHeight, pixelWidth, pixelHeight);
-                }
-            }
-            console.log(array)
-            setResult(array);
-            downloadImage();
+            setResult(event.data);
             downloadJSON();
+            generateHeatmaps(event.data);
         }
     }
 
-    const downloadImage = () => {
-        const canvas = canvasRef.current
+    const generateHeatmaps = (data) => {
 
-        const dataURL = canvas.toDataURL("image/png");
+        const maxData = Math.max(...data.flat());
+        const minData = Math.min(...data.flat());
 
-        const downloadLink = document.createElement("a");
-        downloadLink.href = dataURL;
-        downloadLink.download = "canvas_image.png";
+        let parramattaColorScale = [
+            [0.0, 'rgb(43, 38, 245)'],
+            [(22 - minData) / (maxData - minData), 'rgb(43, 38, 245)'],
 
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        document.body.removeChild(downloadLink);
+            [(22 - minData) / (maxData - minData), 'rgb(77, 100, 242)'],
+            [(25 - minData) / (maxData - minData), 'rgb(77, 100, 242)'],
 
-        URL.revokeObjectURL(dataURL)
-    }
+            [(25 - minData) / (maxData - minData), 'rgb(107, 170, 245)'],
+            [(28 - minData) / (maxData - minData), 'rgb(107, 170, 245)'],
+
+            [(28 - minData) / (maxData - minData), 'rgb(86, 113, 31)'],
+            [(31 - minData) / (maxData - minData), 'rgb(86, 113, 31)'],
+
+            [(31 - minData) / (maxData - minData), 'rgb(163, 164, 51)'],
+            [(34 - minData) / (maxData - minData), 'rgb(163, 164, 51)'],
+
+            [(34 - minData) / (maxData - minData), 'rgb(251, 251, 195)'],
+            [(37 - minData) / (maxData - minData), 'rgb(251, 251, 195)'],
+
+            [(37 - minData) / (maxData - minData), 'rgb(229, 159, 56)'],
+            [(40 - minData) / (maxData - minData), 'rgb(229, 159, 56)'],
+
+            [(40 - minData) / (maxData - minData), 'rgb(202, 86, 36)'],
+            [(43 - minData) / (maxData - minData), 'rgb(202, 86, 36)'],
+
+            [(43 - minData) / (maxData - minData), 'rgb(100, 17, 9)'],
+            [(48 - minData) / (maxData - minData), 'rgb(100, 17, 9)'],
+
+            [(48 - minData) / (maxData - minData), 'rgb(150, 45, 219)'],
+            [1.0, 'rgb(150, 45, 219)'],
+        ]
+
+        let transposedData = data[0].map((_, y) => data.map(row => row[y]));
+
+        const plotData_1 = [{
+            z: transposedData,
+            colorscale: 'YlOrRd',
+            type: 'heatmap',
+            showscale: false,
+            hoverongaps: false,
+            reversescale: true,
+        }];
+
+        const plotData_2 = [{
+            z: transposedData,
+            colorscale: parramattaColorScale,
+            type: 'heatmap',
+            showscale: false,
+            hoverongaps: false,
+        }];
+
+        const innerWidth = document.getElementById("plotArea_1").clientWidth
+
+        console.log(innerWidth)
+
+        var layout = {
+            autosize: false,
+            width: Math.floor(innerWidth),
+            height: Math.floor(innerWidth),
+            margin: {
+                l: 0,
+                r: 0,
+                b: 0,
+                t: 0,
+                pad: 0
+            },
+        }
+
+        Plotly.newPlot('plotArea_1', plotData_1, layout);
+        Plotly.newPlot('plotArea_2', plotData_2, layout);
+    };
 
     const downloadJSON = () => {
         const jsonString = JSON.stringify(result);
@@ -224,15 +270,15 @@ const RunSimulation = () => {
                         <dl className='grid grid-cols-1 gap-4'>
                             <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
                                 <dt className="truncate text-sm font-medium text-gray-500">Minimal Temperature</dt>
-                                <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{minTemp}</dd>
+                                <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{minTemp} °C</dd>
                             </div>
                             <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
                                 <dt className="truncate text-sm font-medium text-gray-500">Average Temperature</dt>
-                                <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{averageTemp}</dd>
+                                <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{averageTemp} °C</dd>
                             </div>
                             <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
                                 <dt className="truncate text-sm font-medium text-gray-500">Maximum Temperature</dt>
-                                <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{maxTemp}</dd>
+                                <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{maxTemp} °C</dd>
                             </div>
                             <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
                                 <dt className="truncate text-sm font-medium text-gray-500">Time (GMT+0)</dt>
@@ -244,16 +290,15 @@ const RunSimulation = () => {
                         <div className="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white h-full">
                             <div className="flow-root">
                                 <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 flex items-center justify-center">
-                                    <div className="inline-block w-full max-w-xl py-2 align-middle px-4 sm:px-6 lg:px-8">
-                                        <div className="w-full">
-                                            <canvas
-                                                id='myCanvas'
-                                                ref={canvasRef}
-                                                width={canvasWidth}
-                                                height={pixelSize * numPixelsY}
-                                                style={{ imageRendering: 'pixelated' }}
-                                                className='hidden'
-                                            />
+                                    <div className="grid w-full py-2 align-middle px-4 gap-4 sm:px-6 lg:px-8">
+                                        <div className='grid grid-cols-1 md:grid-cols-2 gap-x-4'>
+                                            <div className="w-full" id='plotArea_1'>
+                                            </div>
+                                            <div className="w-full" id='plotArea_2'>
+                                            </div>
+                                        </div>
+                                        <div className='w-full' id='plotArea_3'>
+
                                         </div>
                                     </div>
                                 </div>

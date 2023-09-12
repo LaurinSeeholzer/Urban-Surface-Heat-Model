@@ -387,8 +387,12 @@ class Simulation {
     
         for (let x = 0; x < params.pointsX; x++) {
             for (let y = 0; y < params.pointsY; y++) {
-                if (!params.boundary[x][y]) {
-                    const Re = (1.225 * windSpeed[x][y] * params.deltaX) / 1.7894e-5;
+                let Re;
+                if (params.boundary[x][y]) {
+                    Re = (1.225 * params.maxWindSpeed/2 * params.deltaX) / 1.7894e-5;
+                } else {
+                    Re = (1.225 * windSpeed[x][y] * params.deltaX) / 1.7894e-5;
+                }
                     const Pr = (1.7894e-5 * 1005) / 0.0257;
     
                     const Nu = 0.332 * (Re ** (1 / 2)) * (Pr ** (1 / 3))
@@ -396,7 +400,6 @@ class Simulation {
     
                     const q = h * params.deltaX ** 2 * (tempMap[x][y] - averageTemp) * params.deltaTime;
                     tempMap[x][y] -= q / (params.heatCapacity[x][y] * params.deltaX ** 3 * params.density[x][y])
-                }
             }
         }
     }

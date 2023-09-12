@@ -1,4 +1,4 @@
 Hopkins Street Parramatta City NSW Australia
-Min Temp: 19.6
-Average Temp: 33.7
-Max Temp: 54.5
+Min Temp: 19.1
+Average Temp: 33.9
+Max Temp: 54.4
