@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, HashRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, HashRouter, BrowserRouter } from 'react-router-dom';
 
 import Dashboard from './Dashboard.js'
 import SurfaceMaterials from './SurfaceMaterials.js'
@@ -11,8 +11,10 @@ import RunSimulation from './RunSimulation.js'
 function App() {
   return (
         <div>
+            <SideBar />
             <main className="py-10 lg:pl-72">
                 <div className="px-4 sm:px-6 lg:px-8">
+                    <BrowserRouter>
                     <Routes>
                         <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/surfacematerials" element={<SurfaceMaterials />} />
@@ -20,6 +22,7 @@ function App() {
                         <Route path="/mapeditor" element={<MapEditor />} />
                         <Route path="/runsimulation" element={<RunSimulation />} />
                     </Routes>
+                    </BrowserRouter>
                 </div>
             </main>
         </div>
