@@ -16,7 +16,7 @@ function App() {
             <main className="py-10 lg:pl-72">
                 <div className="px-4 sm:px-6 lg:px-8">
                     <Routes>
-                        <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/" element={<Dashboard />} />
                         <Route path="/surfacematerials" element={<SurfaceMaterials />} />
                         <Route path="/simulationsettings" element={<SimulationSettings />} />
                         <Route path="/mapeditor" element={<MapEditor />} />
