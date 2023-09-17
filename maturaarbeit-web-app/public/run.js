@@ -1,4 +1,4 @@
-importScripts('./new_simulation.js');
+importScripts('./simulation.js');
 importScripts('./utils.js');
 
 self.onmessage = e => {

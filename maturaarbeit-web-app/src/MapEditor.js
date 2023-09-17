@@ -1,5 +1,4 @@
 import React, { useRef, useEffect, useState } from 'react';
-import PageTitle from './PageTitle';
 
 const MapEditor = () => {
 
@@ -162,7 +161,6 @@ const MapEditor = () => {
 
     return (
         <div className='grid grid-cols-1 gap-4'>
-            <PageTitle title='Map Editor' back='/simulationsettings' next='/runsimulation' />
             <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
                 <div className='col-span-1 h-full'>
                     <div className="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white h-full">
@@ -237,7 +235,7 @@ const MapEditor = () => {
                     <div className="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white">
                         <div className="flow-root">
                             <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                                <div className="inline-block min-w-full py-2 align-middle px-4 sm:px-6 lg:px-8">
+                                <div className="inline-block min-w-full py-2 align-middle px-4 sm:px-6 lg:px-8 w-full overflow-x-hidden">
                                     <div>
                                         <canvas
                                             id='myCanvas'
@@ -248,7 +246,8 @@ const MapEditor = () => {
                                             onMouseUp={handleMouseUp}
                                             onMouseMove={handleMouseMove}
                                             onClick={handleMouseClick}
-                                            style={{ border: '1px solid black', imageRendering: 'pixelated' }}
+                                            style={{ imageRendering: 'pixelated' }}
+                                            className='bg-gray-50 border border-gray-300'
                                         />
                                     </div>
                                 </div>

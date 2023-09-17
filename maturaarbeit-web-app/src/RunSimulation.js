@@ -15,8 +15,6 @@ const RunSimulation = () => {
     const [iteration, setIteration] = useState('-')
     const [currentDate, setCurrentDate] = useState((new Date(simulationSettings.date)).toLocaleString('de', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).replace(',', '').replace('-', '.'))
 
-    console.log(mapData)
-
     var simWorker = new Worker("run.js");
 
     const numPixelsX = parseInt(simulationSettings.pointsX)
@@ -27,6 +25,28 @@ const RunSimulation = () => {
     const [message, setMessage] = useState('Ready to run your simulation?');
     const [canvasWidth, setCanvasWidth] = useState(0);
     const pixelSize = canvasWidth / numPixelsX;
+
+    let plotArea_3;
+    let plotData_3;
+    let plotLayout_3;
+
+    let plotArea_2;
+    let plotData_2;
+    let plotLayout_2;
+
+    let plotArea_1;
+    let plotData_1;
+    let plotLayout_1;
+
+    const formatedDate = (date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Month is zero-based, so we add 1
+        const day = String(date.getDate()).padStart(2, '0');
+        const hours = String(date.getHours()).padStart(2, '0');
+        const minutes = String(date.getMinutes()).padStart(2, '0');
+        const seconds = String(date.getSeconds()).padStart(2, '0');
+        return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+    }
 
     const runSimulation = () => {
         let albedo = Array.from({ length: simulationSettings.pointsX }, () => Array(simulationSettings.pointsY).fill(0));
@@ -63,11 +83,7 @@ const RunSimulation = () => {
         simWorker.postMessage(data);
     }
 
-    let plotArea_3;
-    let plotData_3;
-    let plotLayout_3;
-
-    useEffect(() => {
+    const initializePlotly = () => {
         plotData_3 = [
             {
                 x: [],
@@ -76,8 +92,19 @@ const RunSimulation = () => {
                 mode: 'lines',
                 name: 'Max. Temp.',
                 line: {
-                    shape: 'spline',
-                  color: 'rgb(114, 21, 40)',
+                    dash: "solid",
+                    color: 'rgb(0,0,0)',
+                }
+            },
+            {
+                x: [],
+                y: [parseFloat(simulationSettings.initialTemperature)],
+                type: 'scatter',
+                mode: 'lines',
+                name: 'Ave. Temp.',
+                line: {
+                    dash: "dash",
+                    color: 'rgb(0,0,0)',
                 }
             },
             {
@@ -87,61 +114,50 @@ const RunSimulation = () => {
                 mode: 'lines',
                 name: 'Min. Temp.',
                 line: {
-                    shape: 'spline',
-                    color: 'rgb(254, 253, 205)',
-                  }
+                    dash: "dot",
+                    color: 'rgb(0,0,0)',
+                }
             },
-            {
-                x: [],
-                y: [parseFloat(simulationSettings.initialTemperature)],
-                type: 'scatter',
-                mode: 'lines',
-                name: 'Ave. Temp.',
-                line: {
-                    shape: 'spline',
-                    color: 'rgb(230, 148, 79)',
-                  }
-            }
         ]
+        plotData_2 = [{
+            z: null,
+            colorscale: 'Hot',
+            type: 'heatmap',
+            showscale: true,
+            hoverongaps: false,
+        }];
+
+        plotData_1 = [{
+            z: null,
+            colorscale: 'Hot',
+            type: 'heatmap',
+            showscale: true,
+            hoverongaps: false,
+        }];
 
         plotLayout_3 = {
+            title: "Temperature Development",
             autosize: true,
             showlegend: true,
-            xaxis: {
-                showline: true,
-                showgrid: true,
-            },
-            yaxis: {
-                showline: true,
-                showgrid: true,
-                zeroline: true,
-            }
-        }
+        };
+        plotLayout_2 = {
+            autosize: true,
+            showlegend: true,
+        };
+        plotLayout_1 = {
+            autosize: true,
+            showlegend: true,
+        };
 
-        plotArea_3 = document.getElementById("plotArea_3")
-        Plotly.newPlot('plotArea_3', plotData_3, plotLayout_3)
-    }, [])
 
-    simWorker.onmessage = event => {
-        if (event.data.type === 'status') {
-            setAverageTemp(event.data.data.averageTemp.toFixed(1))
-            setMinTemp(event.data.data.minTemp.toFixed(1))
-            setMaxTemp(event.data.data.maxTemp.toFixed(1))
-            setIteration(event.data.data.iteration)
-            setCurrentDate(event.data.data.currentDate.toLocaleString('de', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).replace(',', '').replace(/\//g, '.'))
-            plotData_3[0].y.push(parseFloat(event.data.data.maxTemp.toFixed(1)))
-            plotData_3[1].y.push(parseFloat(event.data.data.minTemp.toFixed(1)))
-            plotData_3[2].y.push(parseFloat(event.data.data.averageTemp.toFixed(1)))
-            plotData_3[0].x.push(event.data.data.currentDate.toLocaleString('de', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).replace(',', '').replace(/\//g, '.'))
-            plotData_3[1].x.push(event.data.data.currentDate.toLocaleString('de', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).replace(',', '').replace(/\//g, '.'))
-            plotData_3[2].x.push(event.data.data.currentDate.toLocaleString('de', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).replace(',', '').replace(/\//g, '.'))
-            Plotly.update(plotArea_3, plotData_3, plotLayout_3)
-        } else {
-            setResult(event.data);
-            downloadJSON();
-            generateHeatmaps(event.data);
-        }
-    }
+        plotArea_3 = document.getElementById("plotArea_3");
+        plotArea_2 = document.getElementById("plotArea_2");
+        plotArea_1 = document.getElementById("plotArea_1");
+
+        Plotly.newPlot('plotArea_3', plotData_3, plotLayout_3);
+        Plotly.newPlot('plotArea_2', plotData_2, plotLayout_2)
+        Plotly.newPlot('plotArea_1', plotData_1, plotLayout_1)
+    };
 
     const generateHeatmaps = (data) => {
 
@@ -182,42 +198,16 @@ const RunSimulation = () => {
 
         let transposedData = data[0].map((_, y) => data.map(row => row[y]));
 
-        const plotData_1 = [{
-            z: transposedData,
-            colorscale: 'YlOrRd',
-            type: 'heatmap',
-            showscale: false,
-            hoverongaps: false,
-            reversescale: true,
-        }];
+        plotData_1[0].colorscale = parramattaColorScale;
+        plotData_2[0].colorscale = 'Hot';
 
-        const plotData_2 = [{
-            z: transposedData,
-            colorscale: parramattaColorScale,
-            type: 'heatmap',
-            showscale: false,
-            hoverongaps: false,
-        }];
+        plotData_2[0].reversescale = true;
 
-        const innerWidth = document.getElementById("plotArea_1").clientWidth
+        plotData_1[0].z = transposedData;
+        plotData_2[0].z = transposedData;
 
-        console.log(innerWidth)
-
-        var layout = {
-            autosize: false,
-            width: Math.floor(innerWidth),
-            height: Math.floor(innerWidth),
-            margin: {
-                l: 0,
-                r: 0,
-                b: 0,
-                t: 0,
-                pad: 0
-            },
-        }
-
-        Plotly.newPlot('plotArea_1', plotData_1, layout);
-        Plotly.newPlot('plotArea_2', plotData_2, layout);
+        Plotly.update(plotArea_2, plotData_2, plotLayout_2);
+        Plotly.update(plotArea_1, plotData_1, plotLayout_1);
     };
 
     const downloadJSON = () => {
@@ -236,70 +226,96 @@ const RunSimulation = () => {
         URL.revokeObjectURL(dataURL);
     }
 
+    useEffect(() => {
+        initializePlotly();
+    }, []);
+
+    simWorker.onmessage = event => {
+        if (event.data.type === 'statusUpdate') {
+            setAverageTemp(event.data.data.averageTemp.toFixed(1))
+            setMinTemp(event.data.data.minTemp.toFixed(1))
+            setMaxTemp(event.data.data.maxTemp.toFixed(1))
+            setIteration(event.data.data.iteration)
+            setCurrentDate(event.data.data.currentDate.toLocaleString('de', { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit' }).replace(',', '').replace(/\//g, '.'))
+            plotData_3[0].y.push(parseFloat(event.data.data.maxTemp.toFixed(1)))
+            plotData_3[1].y.push(parseFloat(event.data.data.averageTemp.toFixed(1)))
+            plotData_3[2].y.push(parseFloat(event.data.data.minTemp.toFixed(1)))
+            plotData_3[0].x.push(formatedDate(event.data.data.currentDate));
+            plotData_3[1].x.push(formatedDate(event.data.data.currentDate));
+            plotData_3[2].x.push(formatedDate(event.data.data.currentDate));
+            Plotly.update(plotArea_3, plotData_3, plotLayout_3);
+            generateHeatmaps(event.data.data.data)
+        } else {
+            setResult(event.data);
+            downloadJSON();
+            generateHeatmaps(event.data);
+        }
+    }
+
 
     return (
-        <div className='grid grid-cols-1 gap-4'>
-            <div className='grid grid-cols-1 gap-4'>
-                <div className="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white">
-                    <div className="flex items-center justify-between">
-                        <div className="min-w-0 flex-1">
-                            <h2 className="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">
-                                Run Your Simulation
-                            </h2>
-                        </div>
-                        <div className="items-center flex md:ml-4 md:mt-0 gap-4">
-                            <a
-                                href="/mapeditor"
-                                className="inline-flex items-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
-                            >
-                                <ArrowSmallLeftIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
-                                Back
-                            </a>
-                            <button
-                                onClick={runSimulation}
-                                className="inline-flex items-center gap-x-1.5 rounded-md bg-accentcolor px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-accentcolorbright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentcolor"
-                            >
-                                Run
-                                <RocketLaunchIcon className="-mr-0.5 h-5 w-5" aria-hidden="true" />
-                            </button>
+        <>
+            <div className="grid grid-cols-6 grid-rows-5 gap-4 pb-4">
+                <div className="col-span-2">
+                <div className="overflow-hidden flex rounded-lg bg-white px-4 py-5 shadow sm:p-6 h-full items-center text-center align-center my-auto">
+                    <button
+                        onClick={runSimulation}
+                        type="button"
+                        className="grid m-auto grid-cols-6 w-full rounded-md bg-accentcolor px-3 py-3 text-sm font-semibold text-white shadow-sm hover:bg-accentcolorbright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentcolor"
+                    >
+                        <span className='col-span-5 text-left'>Run Simulation</span>
+                        <RocketLaunchIcon className="h-full w-6 mx-auto" aria-hidden="true" />
+                    </button>
+                    </div>
+                </div>
+                <div className="col-span-2 col-start-1 row-start-2">
+                    <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+                        <dt className="truncate text-sm font-medium text-gray-500">Maximum Temperature</dt>
+                        <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{maxTemp} °C</dd>
+                    </div>
+                </div>
+                <div className="col-span-2 col-start-1 row-start-3">
+                    <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+                        <dt className="truncate text-sm font-medium text-gray-500">Average Temperature</dt>
+                        <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{averageTemp} °C</dd>
+                    </div>
+                </div>
+                <div className="col-span-2 col-start-1 row-start-4">                            <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+                    <dt className="truncate text-sm font-medium text-gray-500">Minimal Temperature</dt>
+                    <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{minTemp} °C</dd>
+                </div></div>
+                <div className="col-span-2 col-start-1 row-start-5">
+                    <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+                        <dt className="truncate text-sm font-medium text-gray-500">Time (GMT+0)</dt>
+                        <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{currentDate}</dd>
+                    </div>
+                </div>
+                <div className="col-span-4 row-span-5 col-start-3 row-start-1">
+                    <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6 w-full h-full">
+                        <div className='w-full h-full' id='plotArea_3'>
                         </div>
                     </div>
                 </div>
-                <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
-                    <div className='col-span-1 h-full'>
-                        <dl className='grid grid-cols-1 gap-4'>
-                            <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                                <dt className="truncate text-sm font-medium text-gray-500">Minimal Temperature</dt>
-                                <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{minTemp} °C</dd>
+            </div>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                <div className="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white h-full">
+                    <div className="flow-root">
+                        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 flex items-center justify-center">
+                            <div className="grid w-full py-2 align-middle px-4 gap-4 sm:px-6 lg:px-8">
+                                <div className='w-full'>
+                                    <div className="w-full" id='plotArea_2'>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                                <dt className="truncate text-sm font-medium text-gray-500">Average Temperature</dt>
-                                <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{averageTemp} °C</dd>
-                            </div>
-                            <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                                <dt className="truncate text-sm font-medium text-gray-500">Maximum Temperature</dt>
-                                <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{maxTemp} °C</dd>
-                            </div>
-                            <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                                <dt className="truncate text-sm font-medium text-gray-500">Time (GMT+0)</dt>
-                                <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{currentDate}</dd>
-                            </div>
-                        </dl>
+                        </div>
                     </div>
-                    <div className='col-span-1 md:col-span-2'>
-                        <div className="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white h-full">
-                            <div className="flow-root">
-                                <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 flex items-center justify-center">
-                                    <div className="grid w-full py-2 align-middle px-4 gap-4 sm:px-6 lg:px-8">
-                                        <div className='grid grid-cols-1 md:grid-cols-2 gap-x-4'>
-                                            <div className="w-full" id='plotArea_1'>
-                                            </div>
-                                            <div className="w-full" id='plotArea_2'>
-                                            </div>
-                                        </div>
-                                        <div className='w-full' id='plotArea_3'>
-
-                                        </div>
+                </div>
+                <div className="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white h-full">
+                    <div className="flow-root">
+                        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 flex items-center justify-center">
+                            <div className="grid w-full py-2 align-middle px-4 gap-4 sm:px-6 lg:px-8">
+                                <div className='w-full'>
+                                    <div className="w-full" id='plotArea_1'>
                                     </div>
                                 </div>
                             </div>
@@ -307,7 +323,8 @@ const RunSimulation = () => {
                     </div>
                 </div>
             </div>
-        </div>
+
+        </>
     );
 }
 

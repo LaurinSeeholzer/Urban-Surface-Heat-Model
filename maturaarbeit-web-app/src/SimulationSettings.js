@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
 import InputField from './InputField'
-import PageTitle from './PageTitle';
 
 export default function SimulationSettings() {
 
@@ -84,7 +83,6 @@ export default function SimulationSettings() {
 
     return (
         <div className='grid grid-cols-1 gap-4'>
-            <PageTitle title='Simulation Settings' back='/surfacematerials' next='/mapeditor' />
             <div className="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white">
 
                 <div className="space-y-12">

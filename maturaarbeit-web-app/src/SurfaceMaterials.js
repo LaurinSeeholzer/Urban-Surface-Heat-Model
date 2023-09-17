@@ -1,7 +1,6 @@
 import { React, useState , useEffect } from 'react';
 import Table from './Table.js'
 import SurfaceMaterialsForm from './SurfaceMaterialsForm.js';
-import PageTitle from './PageTitle.js';
 
 const SurfaceMaterials = () => {
 
@@ -67,7 +66,6 @@ const SurfaceMaterials = () => {
     
     return (
         <div className='grid grid-cols-1 gap-4'>
-            <PageTitle title='Surface Materials' back='/dashboard' next='/simulationsettings'/>
             <SurfaceMaterialsForm addSurface={addSurface}/>
             <Table surfaceData={surfaceData} deleteSurface={deleteSurface} downloadSurfaceData={downloadSurfaceData} uploadSurfaceData={uploadSurfaceData}/>
         </div>
