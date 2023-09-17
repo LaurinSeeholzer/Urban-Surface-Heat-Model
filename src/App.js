@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, HashRouter } from 'react-router-dom';
 
 import Dashboard from './Dashboard.js'
 import SurfaceMaterials from './SurfaceMaterials.js'
