@@ -13,11 +13,11 @@ import {
 } from '@heroicons/react/24/outline'
 
 const navigation = [
-  { name: 'Dashboard', href: '/Urban-Surface-Heat-Model/#/', icon: HomeIcon},
-  { name: 'Surface Materials', href: '/surfacematerials', icon: TableCellsIcon},
-  { name: 'Simulation Settings', href: '/simulationsettings', icon: AdjustmentsHorizontalIcon},
-  { name: 'Map Editor', href: '/mapeditor', icon: MapIcon},
-  { name: 'Run Simulation', href: '/runsimulation', icon: RocketLaunchIcon},
+  { name: 'Dashboard', href: '/Urban-Surface-Heat-Model/dashboard', icon: HomeIcon},
+  { name: 'Surface Materials', href: '/Urban-Surface-Heat-Model/surfacematerials', icon: TableCellsIcon},
+  { name: 'Simulation Settings', href: '/Urban-Surface-Heat-Model/simulationsettings', icon: AdjustmentsHorizontalIcon},
+  { name: 'Map Editor', href: '/Urban-Surface-Heat-Model/mapeditor', icon: MapIcon},
+  { name: 'Run Simulation', href: '/Urban-Surface-Heat-Model/runsimulation', icon: RocketLaunchIcon},
 ]
 
 function classNames(...classes) {
