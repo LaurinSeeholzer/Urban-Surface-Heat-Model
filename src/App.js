@@ -13,7 +13,7 @@ function App() {
 
     const sideBar = () => {
         console.log(window.location.href) 
-        if (window.location.href === "http://localhost:3000/Urban-Surface-Heat-Model/") {   
+        if (window.location.href === "https://laurinseeholzer.github.io/Urban-Surface-Heat-Model/") {   
         return <LandingPage />;
         }
         return <SideBar />
