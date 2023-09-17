@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, BrowserRouter } from 'react-router-dom';
 
 import Dashboard from './Dashboard.js'
 import SurfaceMaterials from './SurfaceMaterials.js'
@@ -10,7 +10,6 @@ import RunSimulation from './RunSimulation.js'
 
 function App() {
   return (
-    <Router>
         <div>
             <SideBar />
             <main className="py-10 lg:pl-72">
@@ -25,7 +24,6 @@ function App() {
                 </div>
             </main>
         </div>
-    </Router>
   );
 }
 
