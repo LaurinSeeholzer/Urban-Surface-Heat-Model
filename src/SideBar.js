@@ -13,7 +13,7 @@ import {
 } from '@heroicons/react/24/outline'
 
 const navigation = [
-  { name: 'Dashboard', href: '/', icon: HomeIcon},
+  { name: 'Dashboard', href: '/Urban-Surface-Heat-Model/', icon: HomeIcon},
   { name: 'Surface Materials', href: '/surfacematerials', icon: TableCellsIcon},
   { name: 'Simulation Settings', href: '/simulationsettings', icon: AdjustmentsHorizontalIcon},
   { name: 'Map Editor', href: '/mapeditor', icon: MapIcon},
