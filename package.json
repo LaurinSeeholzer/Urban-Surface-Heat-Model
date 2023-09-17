@@ -1,8 +1,0 @@
-{
-  "dependencies": {
-    "downloadjs": "^1.4.7",
-    "html-to-image": "^1.11.11",
-    "plotly": "^1.0.6",
-    "plotly.js-dist-min": "^2.26.0"
-  }
-}
