@@ -23,19 +23,14 @@ function App() {
   return (
         <div>
             <BrowserRouter>
-            {sideBar()}
-            <main className="py-10 lg:pl-72">
-                <div className="px-4 sm:px-6 lg:px-8">
                     <Routes>
-                        <Route path="/Urban-Surface-Heat-Model/" element={<></>} />
+                        <Route path="/Urban-Surface-Heat-Model/" element={<LandingPage/>} />
                         <Route path="/Urban-Surface-Heat-Model/dashboard" element={<Dashboard />} />
                         <Route path="/Urban-Surface-Heat-Model/surfacematerials" element={<SurfaceMaterials />} />
                         <Route path="/Urban-Surface-Heat-Model/simulationsettings" element={<SimulationSettings />} />
                         <Route path="/Urban-Surface-Heat-Model/mapeditor" element={<MapEditor />} />
                         <Route path="/Urban-Surface-Heat-Model/runsimulation" element={<RunSimulation />} />
                     </Routes>
-                </div>
-            </main>
             </BrowserRouter>
         </div>
   );

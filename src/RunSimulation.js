@@ -1,6 +1,7 @@
 import { React, useState, useEffect, useRef } from 'react';
 import { RocketLaunchIcon, ArrowSmallLeftIcon } from '@heroicons/react/24/outline';
 import Plotly from 'plotly.js-dist-min'
+import SideBar from './SideBar';
 
 const RunSimulation = () => {
 
@@ -255,75 +256,79 @@ const RunSimulation = () => {
 
     return (
         <>
-            <div className="grid grid-cols-6 grid-rows-5 gap-4 pb-4">
-                <div className="col-span-2">
-                <div className="overflow-hidden flex rounded-lg bg-white px-4 py-5 shadow sm:p-6 h-full items-center text-center align-center my-auto">
-                    <button
-                        onClick={runSimulation}
-                        type="button"
-                        className="grid m-auto grid-cols-6 w-full rounded-md bg-accentcolor px-3 py-3 text-sm font-semibold text-white shadow-sm hover:bg-accentcolorbright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentcolor"
-                    >
-                        <span className='col-span-5 text-left'>Run Simulation</span>
-                        <RocketLaunchIcon className="h-full w-6 mx-auto" aria-hidden="true" />
-                    </button>
-                    </div>
-                </div>
-                <div className="col-span-2 col-start-1 row-start-2">
-                    <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                        <dt className="truncate text-sm font-medium text-gray-500">Maximum Temperature</dt>
-                        <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{maxTemp} °C</dd>
-                    </div>
-                </div>
-                <div className="col-span-2 col-start-1 row-start-3">
-                    <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                        <dt className="truncate text-sm font-medium text-gray-500">Average Temperature</dt>
-                        <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{averageTemp} °C</dd>
-                    </div>
-                </div>
-                <div className="col-span-2 col-start-1 row-start-4">                            <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                    <dt className="truncate text-sm font-medium text-gray-500">Minimal Temperature</dt>
-                    <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{minTemp} °C</dd>
-                </div></div>
-                <div className="col-span-2 col-start-1 row-start-5">
-                    <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
-                        <dt className="truncate text-sm font-medium text-gray-500">Time (GMT+0)</dt>
-                        <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{currentDate}</dd>
-                    </div>
-                </div>
-                <div className="col-span-4 row-span-5 col-start-3 row-start-1">
-                    <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6 w-full h-full">
-                        <div className='w-full h-full' id='plotArea_3'>
+        <SideBar />
+            <main className="py-10 lg:pl-72">
+                <div className="px-4 sm:px-6 lg:px-8">
+                    <div className="grid grid-cols-6 grid-rows-5 gap-4 pb-4">
+                        <div className="col-span-2">
+                            <div className="overflow-hidden flex rounded-lg bg-white px-4 py-5 shadow sm:p-6 h-full items-center text-center align-center my-auto">
+                                <button
+                                    onClick={runSimulation}
+                                    type="button"
+                                    className="grid m-auto grid-cols-6 w-full rounded-md bg-accentcolor px-3 py-3 text-sm font-semibold text-white shadow-sm hover:bg-accentcolorbright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentcolor"
+                                >
+                                    <span className='col-span-5 text-left'>Run Simulation</span>
+                                    <RocketLaunchIcon className="h-full w-6 mx-auto" aria-hidden="true" />
+                                </button>
+                            </div>
+                        </div>
+                        <div className="col-span-2 col-start-1 row-start-2">
+                            <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+                                <dt className="truncate text-sm font-medium text-gray-500">Maximum Temperature</dt>
+                                <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{maxTemp} °C</dd>
+                            </div>
+                        </div>
+                        <div className="col-span-2 col-start-1 row-start-3">
+                            <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+                                <dt className="truncate text-sm font-medium text-gray-500">Average Temperature</dt>
+                                <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{averageTemp} °C</dd>
+                            </div>
+                        </div>
+                        <div className="col-span-2 col-start-1 row-start-4">                            <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+                            <dt className="truncate text-sm font-medium text-gray-500">Minimal Temperature</dt>
+                            <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{minTemp} °C</dd>
+                        </div></div>
+                        <div className="col-span-2 col-start-1 row-start-5">
+                            <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+                                <dt className="truncate text-sm font-medium text-gray-500">Time (GMT+0)</dt>
+                                <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{currentDate}</dd>
+                            </div>
+                        </div>
+                        <div className="col-span-4 row-span-5 col-start-3 row-start-1">
+                            <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6 w-full h-full">
+                                <div className='w-full h-full' id='plotArea_3'>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-                <div className="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white h-full">
-                    <div className="flow-root">
-                        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 flex items-center justify-center">
-                            <div className="grid w-full py-2 align-middle px-4 gap-4 sm:px-6 lg:px-8">
-                                <div className='w-full'>
-                                    <div className="w-full" id='plotArea_2'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
+                        <div className="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white h-full">
+                            <div className="flow-root">
+                                <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 flex items-center justify-center">
+                                    <div className="grid w-full py-2 align-middle px-4 gap-4 sm:px-6 lg:px-8">
+                                        <div className='w-full'>
+                                            <div className="w-full" id='plotArea_2'>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div className="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white h-full">
+                            <div className="flow-root">
+                                <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 flex items-center justify-center">
+                                    <div className="grid w-full py-2 align-middle px-4 gap-4 sm:px-6 lg:px-8">
+                                        <div className='w-full'>
+                                            <div className="w-full" id='plotArea_1'>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white h-full">
-                    <div className="flow-root">
-                        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 flex items-center justify-center">
-                            <div className="grid w-full py-2 align-middle px-4 gap-4 sm:px-6 lg:px-8">
-                                <div className='w-full'>
-                                    <div className="w-full" id='plotArea_1'>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+            </main >
         </>
     );
 }

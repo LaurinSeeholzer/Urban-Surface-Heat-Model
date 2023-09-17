@@ -8,8 +8,8 @@ const LandingPage = () => {
         <Link to='/Urban-Surface-Heat-Model/dashboard'>
             <a href='/Urban-Surface-Heat-Model/dashboard'>
                 here
-        </a>
-                                </Link>
+            </a>
+        </Link>
     </div>
   );
 }

@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import SideBar from './SideBar';
 
 const MapEditor = () => {
 
@@ -44,10 +45,10 @@ const MapEditor = () => {
             for (let row = y; row < y + brushSize; row++) {
                 try {
                     currentMapData[col][simulationSettings.pointsY - (row + 1)] = brush;
-                } catch {}
+                } catch { }
             }
         }
-        
+
         context.fillStyle = brushColor;
         context.fillRect(x * pixelSize, y * pixelSize, brushSize * pixelSize, brushSize * pixelSize);
 
@@ -160,69 +161,100 @@ const MapEditor = () => {
     }
 
     return (
-        <div className='grid grid-cols-1 gap-4'>
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
-                <div className='col-span-1 h-full'>
-                    <div className="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white h-full">
-                        <div className="flow-root">
-                            <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                                <div className="inline-block min-w-full py-2 align-middle px-4 sm:px-6 lg:px-8">
-                                    <div className="grid grid-cols-2 gap-x-6 gap-y-8">
-                                        <div className="col-span-2">
-                                            <div>
-                                                <label htmlFor="location" className="block text-sm font-medium leading-6 text-gray-900">
-                                                    Select Surface Material
-                                                </label>
-                                                <select
-                                                    onChange={changeBrush}
-                                                    id="brush"
-                                                    name="brush"
-                                                    className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-accentcolor sm:text-sm sm:leading-6"
-                                                >
-                                                    {surfaceData.map((item, index) => (
-                                                        <option key={index} value={item.id}>
-                                                            {item.name}
-                                                        </option>
-                                                    ))}
-                                                </select>
+        <>
+            <SideBar />
+            <main className="py-10 lg:pl-72">
+                <div className="px-4 sm:px-6 lg:px-8">
+                    <div className='grid grid-cols-1 gap-4'>
+                        <div className='grid grid-cols-1 md:grid-cols-3 gap-4'>
+                            <div className='col-span-1 h-full'>
+                                <div className="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white h-full">
+                                    <div className="flow-root">
+                                        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                            <div className="inline-block min-w-full py-2 align-middle px-4 sm:px-6 lg:px-8">
+                                                <div className="grid grid-cols-2 gap-x-6 gap-y-8">
+                                                    <div className="col-span-2">
+                                                        <div>
+                                                            <label htmlFor="location" className="block text-sm font-medium leading-6 text-gray-900">
+                                                                Select Surface Material
+                                                            </label>
+                                                            <select
+                                                                onChange={changeBrush}
+                                                                id="brush"
+                                                                name="brush"
+                                                                className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-accentcolor sm:text-sm sm:leading-6"
+                                                            >
+                                                                {surfaceData.map((item, index) => (
+                                                                    <option key={index} value={item.id}>
+                                                                        {item.name}
+                                                                    </option>
+                                                                ))}
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div className='col-span-2'>
+                                                        <label htmlFor='brushSize' className="block text-sm font-medium leading-6 text-gray-900">
+                                                            Set Brush Size
+                                                        </label>
+                                                        <div className="mt-2">
+                                                            <input
+                                                                type='number'
+                                                                name='brushSize'
+                                                                id='brushSize'
+                                                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accentcolor sm:text-sm sm:leading-6"
+                                                                defaultValue={Math.floor(parseInt(simulationSettings.pointsX) / 10)}
+                                                                onChange={changeBrushSize}
+                                                            />
+                                                        </div>
+                                                    </div>
+                                                    <div className='col-span-1 md:col-span-2 2xl:col-span-1'>
+                                                        <div className="">
+                                                            <button
+                                                                onClick={() => { donwloadImage(); downloadJSON() }}
+                                                                type="button"
+                                                                className="w-full rounded-md bg-accentcolor px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-accentcolorbright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentcolor"
+                                                            >
+                                                                Download Map
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    <div className='col-span-1 md:col-span-2 2xl:col-span-1'>
+                                                        <div className="">
+                                                            <input id='fileinput' type="file" className='hidden' accept=".json" onChange={(e) => handleFileChange(e.target.files[0])} ref={fileInputRef}></input>
+                                                            <button
+                                                                onClick={() => { document.getElementById('fileinput').click() }}
+                                                                type="button"
+                                                                className="w-full rounded-md bg-accentcolor px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-accentcolorbright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentcolor"
+                                                            >
+                                                                Upload Map
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div className='col-span-2'>
-                                            <label htmlFor='brushSize' className="block text-sm font-medium leading-6 text-gray-900">
-                                                Set Brush Size
-                                            </label>
-                                            <div className="mt-2">
-                                                <input
-                                                    type='number'
-                                                    name='brushSize'
-                                                    id='brushSize'
-                                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-accentcolor sm:text-sm sm:leading-6"
-                                                    defaultValue={Math.floor(parseInt(simulationSettings.pointsX) / 10)}
-                                                    onChange={changeBrushSize}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className='col-span-1 md:col-span-2 2xl:col-span-1'>
-                                            <div className="">
-                                                <button
-                                                    onClick={() => { donwloadImage(); downloadJSON() }}
-                                                    type="button"
-                                                    className="w-full rounded-md bg-accentcolor px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-accentcolorbright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentcolor"
-                                                >
-                                                    Download Map
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div className='col-span-1 md:col-span-2 2xl:col-span-1'>
-                                            <div className="">
-                                                <input id='fileinput' type="file" className='hidden' accept=".json" onChange={(e) => handleFileChange(e.target.files[0])} ref={fileInputRef}></input>
-                                                <button
-                                                    onClick={() => { document.getElementById('fileinput').click() }}
-                                                    type="button"
-                                                    className="w-full rounded-md bg-accentcolor px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-accentcolorbright focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accentcolor"
-                                                >
-                                                    Upload Map
-                                                </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className='col-span-1 md:col-span-2'>
+                                <div className="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white">
+                                    <div className="flow-root">
+                                        <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                            <div className="inline-block min-w-full py-2 align-middle px-4 sm:px-6 lg:px-8 w-full overflow-x-hidden">
+                                                <div>
+                                                    <canvas
+                                                        id='myCanvas'
+                                                        ref={canvasRef}
+                                                        width={canvasWidth}
+                                                        height={pixelSize * numPixelsY}
+                                                        onMouseDown={handleMouseDown}
+                                                        onMouseUp={handleMouseUp}
+                                                        onMouseMove={handleMouseMove}
+                                                        onClick={handleMouseClick}
+                                                        style={{ imageRendering: 'pixelated' }}
+                                                        className='bg-gray-50 border border-gray-300'
+                                                    />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -231,32 +263,8 @@ const MapEditor = () => {
                         </div>
                     </div>
                 </div>
-                <div className='col-span-1 md:col-span-2'>
-                    <div className="p-4 sm:p-6 lg:p-8 rounded-lg shadow bg-white">
-                        <div className="flow-root">
-                            <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                                <div className="inline-block min-w-full py-2 align-middle px-4 sm:px-6 lg:px-8 w-full overflow-x-hidden">
-                                    <div>
-                                        <canvas
-                                            id='myCanvas'
-                                            ref={canvasRef}
-                                            width={canvasWidth}
-                                            height={pixelSize * numPixelsY}
-                                            onMouseDown={handleMouseDown}
-                                            onMouseUp={handleMouseUp}
-                                            onMouseMove={handleMouseMove}
-                                            onClick={handleMouseClick}
-                                            style={{ imageRendering: 'pixelated' }}
-                                            className='bg-gray-50 border border-gray-300'
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+            </main>
+        </>
     );
 }
 
