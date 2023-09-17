@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/static/css/main.3473d227.css",
-    "main.js": "/static/js/main.c3e3c82d.js",
-    "index.html": "/index.html",
-    "main.3473d227.css.map": "/static/css/main.3473d227.css.map",
-    "main.c3e3c82d.js.map": "/static/js/main.c3e3c82d.js.map"
+    "main.css": "/Urban-Surface-Heat-Model/static/css/main.3473d227.css",
+    "main.js": "/Urban-Surface-Heat-Model/static/js/main.dc74d0fe.js",
+    "index.html": "/Urban-Surface-Heat-Model/index.html",
+    "main.3473d227.css.map": "/Urban-Surface-Heat-Model/static/css/main.3473d227.css.map",
+    "main.dc74d0fe.js.map": "/Urban-Surface-Heat-Model/static/js/main.dc74d0fe.js.map"
   },
   "entrypoints": [
     "static/css/main.3473d227.css",
-    "static/js/main.c3e3c82d.js"
+    "static/js/main.dc74d0fe.js"
   ]
 }
