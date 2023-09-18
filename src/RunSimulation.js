@@ -255,7 +255,7 @@ const RunSimulation = () => {
 
     return (
         <>
-            <div className="grid grid-cols-6 grid-rows-5 gap-4 pb-4">
+            <div className="grid grid-cols-2 md:grid-cols-6 md:grid-rows-5 gap-4 pb-4">
                 <div className="col-span-2">
                     <div className="overflow-hidden flex rounded-lg bg-white px-4 py-5 shadow sm:p-6 h-full items-center text-center align-center my-auto">
                         <button
@@ -268,29 +268,29 @@ const RunSimulation = () => {
                         </button>
                     </div>
                 </div>
-                <div className="col-span-2 col-start-1 row-start-2">
+                <div className="col-span-2 col-start-1 md:row-start-2">
                     <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
                         <dt className="truncate text-sm font-medium text-gray-500">Maximum Temperature</dt>
                         <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{maxTemp} °C</dd>
                     </div>
                 </div>
-                <div className="col-span-2 col-start-1 row-start-3">
+                <div className="col-span-2 col-start-1 md:row-start-3">
                     <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
                         <dt className="truncate text-sm font-medium text-gray-500">Average Temperature</dt>
                         <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{averageTemp} °C</dd>
                     </div>
                 </div>
-                <div className="col-span-2 col-start-1 row-start-4">                            <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
+                <div className="col-span-2 col-start-1 md:row-start-4">                            <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
                     <dt className="truncate text-sm font-medium text-gray-500">Minimal Temperature</dt>
                     <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{minTemp} °C</dd>
                 </div></div>
-                <div className="col-span-2 col-start-1 row-start-5">
+                <div className="col-span-2 col-start-1 md:row-start-5">
                     <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6">
                         <dt className="truncate text-sm font-medium text-gray-500">Time (GMT+0)</dt>
                         <dd className="mt-1 text-3xl font-semibold tracking-tight text-gray-900">{currentDate}</dd>
                     </div>
                 </div>
-                <div className="col-span-4 row-span-5 col-start-3 row-start-1">
+                <div className=" col-span-2  col-start-1 md:col-span-4 md:row-span-5 md:col-start-3 md:row-start-1">
                     <div className="overflow-hidden rounded-lg bg-white px-4 py-5 shadow sm:p-6 w-full h-full">
                         <div className='w-full h-full' id='plotArea_3'>
                         </div>
