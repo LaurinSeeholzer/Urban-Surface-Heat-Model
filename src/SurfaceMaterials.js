@@ -67,15 +67,10 @@ const SurfaceMaterials = () => {
 
     return (
         <>
-        <SideBar />
-        <main className="py-10 lg:pl-72">
-            <div className="px-4 sm:px-6 lg:px-8">
-                <div className='grid grid-cols-1 gap-4'>
-                    <SurfaceMaterialsForm addSurface={addSurface} />
-                    <Table surfaceData={surfaceData} deleteSurface={deleteSurface} downloadSurfaceData={downloadSurfaceData} uploadSurfaceData={uploadSurfaceData} />
-                </div>
+            <div className='grid grid-cols-1 gap-4'>
+                <SurfaceMaterialsForm addSurface={addSurface} />
+                <Table surfaceData={surfaceData} deleteSurface={deleteSurface} downloadSurfaceData={downloadSurfaceData} uploadSurfaceData={uploadSurfaceData} />
             </div>
-        </main>
         </>
     );
 }
