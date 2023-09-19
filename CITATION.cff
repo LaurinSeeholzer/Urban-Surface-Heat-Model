@@ -1,0 +1,26 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: Urban Surface Heat Model
+message: 'If you use this software, please cite it as below.'
+type: software
+authors:
+  - given-names: Laurin
+    family-names: Seeholzer
+    email: laurin_seeholzer@sluz.ch
+    orcid: 'https://orcid.org/0009-0001-5236-1081'
+    affiliation: Kantonsschule Reussbühl Luzern
+repository-code: >-
+  https://github.com/LaurinSeeholzer/Urban-Surface-Heat-Model
+url: 'https://laurinseeholzer.github.io/Urban-Surface-Heat-Model'
+abstract: >-
+  The urban-surface-heat-model was developed as a simulation
+  based approach to analyzing the behavior of surface
+  temperatures in urban areas.
+keywords:
+  - UHI
+  - Urban Heat Island Effect
+  - Urban Heat Simulation
+  - Heat Simulation
+license: MIT
